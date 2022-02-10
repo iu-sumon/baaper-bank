@@ -22,11 +22,11 @@
             <div class="grid grid-cols-3 gap-4 ">
                 <div class="bg-amber-500 p-8 text-center text-white border-2 rounded-2xl">
                     <h3 class="text-2xl font-medium">Deposit</h3>
-                    <h4 class="text-4xl font-semibold">$<span id="deposit-money">00</span></h4>
+                    <h4 class="text-4xl font-semibold">$<span id="deposit-amount">00</span></h4>
                 </div>
                 <div class="bg-lime-500 p-8 text-center text-white border-2 rounded-2xl">
                     <h3 class="text-2xl font-medium">Withdraw</h3>
-                    <h4 class="text-4xl font-semibold">$<span id="withdraw-money">00</span></h4>
+                    <h4 class="text-4xl font-semibold">$<span id="withdraw-amount">00</span></h4>
                 </div>
                 <div class="bg-violet-600 p-8 text-center text-white border-2 rounded-2xl">
                     <h3 class="text-2xl font-medium">Balance</h3>
@@ -43,7 +43,7 @@
                     <h3 class="text-2xl">Please Deposit</h3>
                     <div class="">
 
-                        <input id="deposit-amount"
+                        <input id="deposit-input"
                             class="border-2 border-gray-400 rounded block text-center mb-2 w-3/4 " type="text" name=""
                             id="" placeholder="$ amount you want to deposit ">
 
@@ -57,7 +57,7 @@
                     <h3 class="text-2xl">Please Withdraw</h3>
                     <div class="">
 
-                        <input id="withdraw-amount"
+                        <input id="withdraw-input"
                             class="border-2 border-gray-400 rounded block text-center mb-2 w-3/4 " type="text" name=""
                             id="" placeholder="$ amount you want to withdraw">
 
@@ -79,21 +79,21 @@
         document.getElementById('deposit-btn').addEventListener('click', function () {
 
             //যার ভ্যালু অন্য জায়গায় যাবে তাকে নিয়ে আসব 
-            const depositAmount = document.getElementById('deposit-amount')
-            const newDepositAmount = depositAmount.value;
+            const depositInput = document.getElementById('deposit-input')
+            const newDepositInput = depositInput.value;
 
 
             //এই ভ্যালু যেখানে অ্যাড হবে তাকে নিয়ে আসব 
-            const depositMoney = document.getElementById('deposit-money');
-            const previousDepositAmount = depositMoney.innerText;
+            const depositAmount= document.getElementById('deposit-amount');
+            const previousDepositAmount = depositAmount.innerText;
 
             // দুইটা ভ্যালু যোগ করে টোটাল করব 
-            const totalDepositAmount = parseFloat(previousDepositAmount) + parseFloat(newDepositAmount);
+            const totalDepositAmount = parseFloat(previousDepositAmount) + parseFloat(newDepositInput);
 
             //ইনার টেক্সট হবে টোটাল ভ্যালু 
-            depositMoney.innerText = totalDepositAmount;
+            depositAmount.innerText = totalDepositAmount;
 
-            depositAmount.value = '';
+            depositInput.value = '';
 
 
             //update total balance
@@ -102,44 +102,66 @@
             const previousBalanceMoney = balanceMoney.innerText;
 
 
-           
-            const totalBalance = parseFloat(previousBalanceMoney) + parseFloat(newDepositAmount);
+
+            const totalBalance = parseFloat(previousBalanceMoney) + parseFloat(newDepositInput);
 
             balanceMoney.innerText = totalBalance;
 
- })
-      
-         //প্রথমে বাটনকে অ্যাড ইভেন লিসনার করবো  
-   document.getElementById('withdraw-btn').addEventListener('click',function()
-   {     
-         //যার ভ্যালু অন্য জায়গায় যাবে তাকে নিয়ে আসব 
+        })
 
-         const withdrawAmount=document.getElementById('withdraw-amount');
-         const newWithdrawAmount=withdrawAmount.innerText;
+        //প্রথমে বাটনকে অ্যাড ইভেন লিসনার করবো  
+        document.getElementById('withdraw-btn').addEventListener('click', function () {
+            //যার ভ্যালু অন্য জায়গায় যাবে তাকে নিয়ে আসব 
 
-        //এই ভ্যালু যেখানে অ্যাড হবে তাকে নিয়ে আসব 
-         
-          const withdrawMoney=document.getElementById('withdraw-,oney');
-          
+            const withdrawInput = document.getElementById('withdraw-input');
+            const newWithdrawInput = withdrawInput.value;
+
+            //এই ভ্যালু যেখানে অ্যাড হবে তাকে নিয়ে আসব 
+
+            const withdrawAmount = document.getElementById('withdraw-amount');
+            const previousWithdrawAmount = withdrawAmount.innerText;
+
+             //ei dui ta plus kore total ber korbo
+            const totalWithdrawAmount = parseFloat(previousWithdrawAmount) + parseFloat(newWithdrawInput);
+
+            withdrawAmount.innerText = totalWithdrawAmount;
+
+            withdrawInput.value = '';
+
+           //update balance
+           //withdraw input er jekhane minus hobe take niye asbo
+            
+            const balanceMoney=document.getElementById('balance-money');
+            const previousBalanceMoney=balanceMoney.innerText;
+            
+            //ager jomano taka theke new withdraw bad dite hobe
+            const totalBalanceMoney=parseFloat(previousBalanceMoney)-parseFloat(newWithdrawInput);
+
+            balanceMoney.innerText=totalBalanceMoney;
 
 
-   })
 
 
 
-        document.getElementById('deposit-money').addEventListener('keyup', function (event) {
 
-            const depositButton = document.getElementById('deposit-btn');
-            if (event.target.value == number) {
-                depositButton.removeAttribute = ('disabled');
-            }
-            else {
-                depositButton.setAttribute = ('disabled', true);
-            }
+        })
 
 
 
-        });
+        // document.getElementById('deposit-input').addEventListener('keyup', function (event) {
+
+        //     const depositButton = document.getElementById('deposit-btn');
+
+        //     if (Number(event.target.value)  == 'number') {
+        //         depositButton.removeAttribute = ('disabled');
+        //     }
+        //     else {
+        //         depositButton.setAttribute = ('disabled', true);
+        //     }
+
+
+
+        // });
 
 
 
